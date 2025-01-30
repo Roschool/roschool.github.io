@@ -19,19 +19,36 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        .repo-btn {
-            display: block;
-            width: 100%;
+        .repo-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: white;
+            margin: 15px 0;
             padding: 15px;
-            margin: 10px 0;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: left;
         }
-        .repo-btn:hover {
-            background: #0056b3;
+        .repo-card:hover {
+            transform: scale(1.03);
+        }
+        .repo-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .repo-description {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+        .repo-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
     <script src="repos.js" defer></script>
@@ -41,12 +58,27 @@
             
             if (typeof repos !== "undefined" && Array.isArray(repos)) {
                 repos.forEach(repo => {
-                    const btn = document.createElement("a");
-                    btn.className = "repo-btn";
-                    btn.href = repo.url;
-                    btn.textContent = repo.name;
-                    btn.target = "_blank";
-                    container.appendChild(btn);
+                    const card = document.createElement("div");
+                    card.className = "repo-card";
+                    
+                    const title = document.createElement("div");
+                    title.className = "repo-title";
+                    title.textContent = repo.name;
+                    
+                    const description = document.createElement("div");
+                    description.className = "repo-description";
+                    description.textContent = repo.description || "Geen beschrijving beschikbaar.";
+                    
+                    const link = document.createElement("a");
+                    link.className = "repo-link";
+                    link.href = repo.url;
+                    link.textContent = "Lees meer →";
+                    link.target = "_blank";
+                    
+                    card.appendChild(title);
+                    card.appendChild(description);
+                    card.appendChild(link);
+                    container.appendChild(card);
                 });
             } else {
                 container.innerHTML = "<p>Geen repositories gevonden.</p>";
@@ -57,7 +89,7 @@
 <body>
     <div class="container">
         <h1>Welkom op mijn GitHub Pagina</h1>
-        <p>Klik op een knop om naar de bijbehorende website te gaan.</p>
+        <p>Klik op een project om meer te lezen.</p>
         <div id="repo-container"></div>
     </div>
 </body>
