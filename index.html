@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Code Editor met Opslag</title>
+</head>
+<body>
+    <div class="container">
+        <div class="editor">
+            <h1>Code Editor</h1>
+            <textarea id="codeInput" placeholder="Typ hier je HTML- of JavaScript-code..."></textarea>
+            <div class="char-counter" id="charCount">Karakters: 0</div>
+            <div class="button-container">
+                <button onclick="executeScript()">Uitvoeren</button>
+                <button onclick="clearField()">Verwijderen</button>
+            </div>
+        </div>
+        <div class="output">
+            <h1>Uitvoer</h1>
+            <iframe id="resultFrame" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
