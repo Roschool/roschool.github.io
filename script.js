@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
             const params = new URLSearchParams(window.location.search);
             const splashScreen = document.getElementById("splash-screen");
             if (params.get("splash") === "true") {
@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         event.preventDefault();
                         document.getElementById("loading-screen").style.display = "flex";
                         setTimeout(() => {
-                            window.location.href = repo.url;
+                            window.open(repo.url, "_blank");
+                            document.getElementById("loading-screen").style.display = "none";
                         }, 1000);
                     };
                     
