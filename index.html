@@ -1,28 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Code Editor met Opslag</title>
+    <title>Mijn GitHub Pagina</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .repo-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .repo-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+    <script src="repos.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("repo-container");
+            
+            if (typeof repos !== "undefined" && Array.isArray(repos)) {
+                repos.forEach(repo => {
+                    const btn = document.createElement("a");
+                    btn.className = "repo-btn";
+                    btn.href = repo.url;
+                    btn.textContent = repo.name;
+                    btn.target = "_blank";
+                    container.appendChild(btn);
+                });
+            } else {
+                container.innerHTML = "<p>Geen repositories gevonden.</p>";
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
-        <div class="editor">
-            <h1>Code Editor</h1>
-            <textarea id="codeInput" placeholder="Typ hier je HTML- of JavaScript-code..."></textarea>
-            <div class="char-counter" id="charCount">Karakters: 0</div>
-            <div class="button-container">
-                <button onclick="executeScript()">Uitvoeren</button>
-                <button onclick="clearField()">Verwijderen</button>
-            </div>
-        </div>
-        <div class="output">
-            <h1>Uitvoer</h1>
-            <iframe id="resultFrame" sandbox="allow-scripts allow-same-origin"></iframe>
-        </div>
+        <h1>Welkom op mijn GitHub Pagina</h1>
+        <p>Klik op een knop om naar de bijbehorende website te gaan.</p>
+        <div id="repo-container"></div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
